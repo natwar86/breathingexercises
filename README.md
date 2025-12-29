@@ -1,8 +1,8 @@
-# Breathe - Daily Mindfulness PWA
+# BreathingExercises - Daily Mindfulness PWA
 
 A simple, elegant Progressive Web App for guided breathing meditation with daily habit tracking.
 
-**Live Demo**: [Coming soon - Deploy to GitHub Pages]
+**Live Demo**: https://natwar86.github.io/breathingexercises/
 
 ## Features
 

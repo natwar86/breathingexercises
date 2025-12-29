@@ -1,6 +1,6 @@
 {
-  "name": "Breathing App - Daily Mindfulness",
-  "short_name": "Breathe",
+  "name": "BreathingExercises - Daily Mindfulness",
+  "short_name": "BreathingExercises",
   "description": "Daily breathing meditation and mindfulness practice with streak tracking",
   "start_url": "/",
   "display": "standalone",
