@@ -346,6 +346,37 @@ body::before {
    RESPONSIVE DESIGN
    ============================================ */
 
+/* Tablet and Medium Screens */
+@media (max-width: 768px) {
+  .app-container {
+    padding: var(--space-md) var(--space-md);
+  }
+
+  .stats-header {
+    max-width: 90%;
+  }
+
+  .circle-wrapper {
+    width: min(340px, 80vw);
+    height: min(340px, 80vw);
+  }
+
+  .progress-ring {
+    width: min(340px, 80vw);
+    height: min(340px, 80vw);
+  }
+
+  .breathing-circle {
+    width: min(var(--circle-size), 65vw);
+    height: min(var(--circle-size), 65vw);
+  }
+
+  .controls {
+    max-width: 90%;
+  }
+}
+
+/* Mobile Devices */
 @media (max-width: 480px) {
   .app-container {
     padding: var(--space-md);

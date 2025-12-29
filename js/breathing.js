@@ -118,8 +118,7 @@ const BreathingSession = {
     // Schedule transition to exhale after 5.5s + 0.5s pause
     this.timeoutId = setTimeout(() => {
       if (this.isActive) {
-        // Brief pause before exhale
-        this.elements.instruction.textContent = 'Hold';
+        // Brief pause before exhale (no text shown)
         setTimeout(() => {
           if (this.isActive) {
             this.startExhale();
@@ -149,8 +148,7 @@ const BreathingSession = {
     // Schedule transition to next inhale after 5.5s + 0.5s pause
     this.timeoutId = setTimeout(() => {
       if (this.isActive) {
-        // Brief pause before next inhale
-        this.elements.instruction.textContent = 'Hold';
+        // Brief pause before next inhale (no text shown)
         setTimeout(() => {
           if (this.isActive) {
             // Increment cycle count (one full breath = inhale + exhale)

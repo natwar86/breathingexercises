@@ -4,13 +4,13 @@
 
 /* Inhale Animation - Circle grows smoothly */
 .breathing-circle.inhale {
-  animation: pulse-inhale var(--duration-breath) cubic-bezier(0.4, 0, 0.2, 1) forwards,
+  animation: pulse-inhale var(--duration-breath) cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards,
              glow-pulse var(--duration-breath) ease-in-out forwards;
 }
 
 /* Exhale Animation - Circle shrinks smoothly */
 .breathing-circle.exhale {
-  animation: pulse-exhale var(--duration-breath) cubic-bezier(0.4, 0, 0.2, 1) forwards,
+  animation: pulse-exhale var(--duration-breath) cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards,
              glow-pulse var(--duration-breath) ease-in-out forwards;
 }
 
@@ -20,13 +20,13 @@
     transform: scale(1);
   }
   to {
-    transform: scale(2.5);
+    transform: scale(1.5);
   }
 }
 
 @keyframes pulse-exhale {
   from {
-    transform: scale(2.5);
+    transform: scale(1.5);
   }
   to {
     transform: scale(1);
@@ -128,7 +128,7 @@
   }
 
   .breathing-circle.inhale {
-    transform: scale(2.5);
+    transform: scale(1.5);
   }
 
   .breathing-circle.exhale {
