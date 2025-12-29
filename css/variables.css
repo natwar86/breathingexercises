@@ -1,0 +1,54 @@
+:root {
+  /* Zen Luxury Color Palette - Deep, Sophisticated, Calming */
+  --color-bg-primary: #0a0e27;      /* Deep navy black */
+  --color-bg-secondary: rgba(255, 255, 255, 0.03); /* Subtle glass overlay */
+  --color-bg-card: rgba(255, 255, 255, 0.06);      /* Glass card */
+  --color-text-primary: #e8e9f0;    /* Soft white */
+  --color-text-secondary: #8b8fa3;  /* Muted lavender gray */
+  --color-text-tertiary: #5a5d70;   /* Darker muted */
+  --color-accent: #6b7ff8;          /* Soft periwinkle */
+  --color-accent-glow: rgba(107, 127, 248, 0.4); /* Accent with transparency */
+  --color-success: #7cd4ac;         /* Soft mint green */
+  --color-gradient-1: #1a1f3a;      /* Ambient gradient stop 1 */
+  --color-gradient-2: #0f1428;      /* Ambient gradient stop 2 */
+
+  /* Spacing - Tighter grid for compact layout */
+  --space-xs: 0.375rem; /* 6px */
+  --space-sm: 0.75rem;  /* 12px */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 1.5rem;   /* 24px */
+  --space-xl: 2rem;     /* 32px */
+  --space-2xl: 2.5rem;  /* 40px */
+
+  /* Typography - Refined pairing */
+  --font-display: 'Cormorant Garamond', serif;  /* Elegant serif for numbers */
+  --font-body: 'Inter', -apple-system, sans-serif; /* Clean sans for labels */
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.5rem;      /* 24px */
+  --font-size-2xl: 2rem;       /* 32px */
+  --font-size-3xl: 2.5rem;     /* 40px */
+  --font-size-4xl: 3.5rem;     /* 56px */
+  --font-size-5xl: 5rem;       /* 80px */
+
+  /* Timing - Match breathing cycle */
+  --duration-breath: 5500ms;
+  --duration-transition: 400ms;
+  --duration-fast: 200ms;
+
+  /* Circle sizing */
+  --circle-size: 280px;
+
+  /* Border radius */
+  --radius-sm: 0.5rem;  /* 8px */
+  --radius-md: 1.25rem; /* 20px */
+  --radius-lg: 1.5rem;  /* 24px */
+  --radius-full: 9999px;
+
+  /* Effects */
+  --blur-glass: 20px;
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 60px var(--color-accent-glow);
+}

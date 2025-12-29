@@ -1,0 +1,455 @@
+/* ============================================
+   ZEN LUXURY BREATHING APP - PREMIUM DESIGN
+   ============================================ */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, var(--color-gradient-1) 0%, var(--color-bg-primary) 50%, var(--color-gradient-2) 100%);
+  background-attachment: fixed;
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Ambient Background Effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(107, 127, 248, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(124, 212, 172, 0.05) 0%, transparent 50%);
+  animation: ambient-drift 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes ambient-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-5%, 5%) scale(1.05); }
+}
+
+/* App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--space-md) var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   STATS HEADER - GLASSMORPHISM
+   ============================================ */
+
+.stats-header {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  max-width: 480px;
+  background: var(--color-bg-card);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0; /* Prevent flex overflow */
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.stat-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  white-space: nowrap; /* Prevent wrapping */
+  font-family: var(--font-display);
+  font-size: var(--font-size-3xl);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.streak-count {
+  color: var(--color-success);
+}
+
+.today-count,
+.goal-count {
+  color: var(--color-text-primary);
+}
+
+.stat-separator {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-xl);
+  margin: 0 0.1rem;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.stat-divider {
+  width: 1px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 20%,
+    rgba(255, 255, 255, 0.12) 80%,
+    transparent 100%);
+  align-self: stretch;
+  margin: 0 var(--space-xs);
+}
+
+/* ============================================
+   BREATHING CONTAINER
+   ============================================ */
+
+.breathing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: var(--space-lg);
+  padding: var(--space-xl) 0;
+  position: relative;
+}
+
+/* Circle Wrapper - Contains SVG Progress Ring and Circle */
+.circle-wrapper {
+  position: relative;
+  width: 340px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   PROGRESS RING (SVG)
+   ============================================ */
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg); /* Start from top */
+  filter: drop-shadow(0 0 8px rgba(107, 127, 248, 0.3));
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 2;
+}
+
+.progress-ring-circle {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1036.73; /* Exact: 2 * PI * 165 */
+  stroke-dashoffset: 1036.73;
+  transition: stroke-dashoffset var(--duration-fast) linear;
+  filter: drop-shadow(0 0 4px var(--color-accent-glow));
+}
+
+/* ============================================
+   BREATHING CIRCLE
+   ============================================ */
+
+.breathing-circle {
+  position: relative;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle at 40% 40%,
+    rgba(107, 127, 248, 0.25) 0%,
+    rgba(107, 127, 248, 0.15) 50%,
+    rgba(107, 127, 248, 0.05) 100%);
+  border: 1px solid rgba(107, 127, 248, 0.2);
+  box-shadow:
+    0 0 60px rgba(107, 127, 248, 0.2),
+    inset 0 0 60px rgba(107, 127, 248, 0.1);
+  will-change: transform;
+  transition: box-shadow var(--duration-transition) ease;
+
+  /* Center the text inside */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breathing-circle.active {
+  box-shadow:
+    0 0 80px rgba(107, 127, 248, 0.4),
+    inset 0 0 80px rgba(107, 127, 248, 0.2);
+}
+
+/* ============================================
+   BREATH INSTRUCTION TEXT (INSIDE CIRCLE)
+   ============================================ */
+
+.breath-instruction {
+  font-family: var(--font-body);
+  font-size: var(--font-size-2xl);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--color-text-primary);
+  opacity: 0;
+  transition: opacity var(--duration-transition) ease,
+              font-size var(--duration-breath) ease;
+  text-align: center;
+  pointer-events: none;
+  text-shadow: 0 0 20px rgba(107, 127, 248, 0.5);
+}
+
+.breath-instruction.active {
+  opacity: 1;
+}
+
+/* Scale text with circle */
+.breathing-circle.inhale .breath-instruction {
+  font-size: var(--font-size-4xl);
+}
+
+.breathing-circle.exhale .breath-instruction {
+  font-size: var(--font-size-xl);
+}
+
+/* ============================================
+   BREATH COUNT
+   ============================================ */
+
+.breath-count {
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  margin-top: 0;
+}
+
+/* ============================================
+   CONTROLS
+   ============================================ */
+
+.controls {
+  display: flex;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Buttons */
+.btn {
+  flex: 1;
+  padding: var(--space-md) var(--space-xl);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-transition) ease;
+  min-height: 56px;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, rgba(107, 127, 248, 0.8) 100%);
+  color: var(--color-text-primary);
+  box-shadow:
+    0 4px 20px rgba(107, 127, 248, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary:hover {
+  box-shadow:
+    0 6px 30px rgba(107, 127, 248, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(var(--blur-glass));
+  color: var(--color-text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-primary);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: var(--space-md);
+  }
+
+  .stats-header {
+    max-width: 100%;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .stat-value {
+    font-size: var(--font-size-2xl);
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+  }
+
+  .circle-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+
+  .progress-ring {
+    width: 300px;
+    height: 300px;
+  }
+
+  .progress-ring-bg,
+  .progress-ring-circle {
+    cx: 150;
+    cy: 150;
+    r: 145;
+  }
+
+  .breathing-circle {
+    width: 240px;
+    height: 240px;
+  }
+
+  .breath-instruction {
+    font-size: var(--font-size-lg);
+  }
+
+  .breathing-circle.inhale .breath-instruction {
+    font-size: var(--font-size-3xl);
+  }
+
+  .breathing-circle.exhale .breath-instruction {
+    font-size: var(--font-size-base);
+  }
+
+  .breath-count {
+    font-size: var(--font-size-lg);
+  }
+
+  .controls {
+    max-width: 100%;
+    gap: var(--space-sm);
+  }
+
+  .btn {
+    font-size: var(--font-size-sm);
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+@media (max-width: 360px) {
+  .stat-value {
+    font-size: var(--font-size-xl);
+  }
+
+  .stat-divider {
+    margin: 0 var(--space-xs);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  body::before {
+    animation: none;
+  }
+}
+
+/* Focus States */
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Loading State */
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
